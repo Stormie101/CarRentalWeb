@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Login/Sign Up</title>
@@ -45,7 +49,7 @@
                 <h2 id="form-title">Login</h2>
                 <p class="text-muted">Access your account or create a new one.</p>
             </div>
-            <form id="authForm" method="POST" action="process_login.php">
+            <form asp-action="Login" method="post">
                 <div id="login-section">
                     <!-- Login Form -->
                     <div class="mb-3">
@@ -59,50 +63,8 @@
                     <button type="submit" class="btn btn-auth">Login</button>
                 </div>
             </form>
-            <form id="authForm" method="POST" action="process_signup.php">
-                <div id="signup-section" style="display: none;">
-                    <!-- Sign Up Form -->
-                    <div class="mb-3">
-                        <label for="signupName" class="form-label">Full Name</label>
-                        <input type="text" id="signupName" name="signupName" class="form-control" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="signupEmail" class="form-label">Email Address</label>
-                        <input type="email" id="signupEmail" name="signupEmail" class="form-control" placeholder="Enter your email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="signupPassword" class="form-label">Password</label>
-                        <input type="password" id="signupPassword" name="signupPassword" class="form-control" placeholder="Create a password" required>
-                    </div>
-                    <button type="submit" class="btn btn-auth">Sign Up</button>
-                </div>
-            </form>
-            <div class="toggle-auth">
-                <a href="#" id="toggleAuthLink" class="text-primary">Don't have an account? Sign Up</a>
-            </div>
+
         </div>
     </div>
-
-    <script>
-        const toggleAuthLink = document.getElementById("toggleAuthLink");
-        const formTitle = document.getElementById("form-title");
-        const loginSection = document.getElementById("login-section");
-        const signupSection = document.getElementById("signup-section");
-
-        toggleAuthLink.addEventListener("click", function(event) {
-            event.preventDefault();
-            if (loginSection.style.display === "none") {
-                loginSection.style.display = "block";
-                signupSection.style.display = "none";
-                formTitle.textContent = "Login";
-                toggleAuthLink.textContent = "Don't have an account? Sign Up";
-            } else {
-                loginSection.style.display = "none";
-                signupSection.style.display = "block";
-                formTitle.textContent = "Sign Up";
-                toggleAuthLink.textContent = "Already have an account? Login";
-            }
-        });
-    </script>
 </body>
 </html>
