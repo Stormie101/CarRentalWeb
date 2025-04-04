@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login/Sign Up</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .auth-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-auth {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            width: 100%;
+        }
+
+            .btn-auth:hover {
+                background-color: #0056b3;
+            }
+
+        .toggle-auth {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h2 id="form-title">Login</h2>
+                <p class="text-muted">Access your account or create a new one.</p>
+            </div>
+            <form id="authForm" method="POST" action="process_login.php">
+                <div id="login-section">
+                    <!-- Login Form -->
+                    <div class="mb-3">
+                        <label for="loginEmail" class="form-label">Email Address</label>
+                        <input type="email" id="loginEmail" name="loginEmail" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" id="loginPassword" name="loginPassword" class="form-control" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-auth">Login</button>
+                </div>
+            </form>
+            <form id="authForm" method="POST" action="process_signup.php">
+                <div id="signup-section" style="display: none;">
+                    <!-- Sign Up Form -->
+                    <div class="mb-3">
+                        <label for="signupName" class="form-label">Full Name</label>
+                        <input type="text" id="signupName" name="signupName" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="signupEmail" class="form-label">Email Address</label>
+                        <input type="email" id="signupEmail" name="signupEmail" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="signupPassword" class="form-label">Password</label>
+                        <input type="password" id="signupPassword" name="signupPassword" class="form-control" placeholder="Create a password" required>
+                    </div>
+                    <button type="submit" class="btn btn-auth">Sign Up</button>
+                </div>
+            </form>
+            <div class="toggle-auth">
+                <a href="#" id="toggleAuthLink" class="text-primary">Don't have an account? Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const toggleAuthLink = document.getElementById("toggleAuthLink");
+        const formTitle = document.getElementById("form-title");
+        const loginSection = document.getElementById("login-section");
+        const signupSection = document.getElementById("signup-section");
+
+        toggleAuthLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            if (loginSection.style.display === "none") {
+                loginSection.style.display = "block";
+                signupSection.style.display = "none";
+                formTitle.textContent = "Login";
+                toggleAuthLink.textContent = "Don't have an account? Sign Up";
+            } else {
+                loginSection.style.display = "none";
+                signupSection.style.display = "block";
+                formTitle.textContent = "Sign Up";
+                toggleAuthLink.textContent = "Already have an account? Login";
+            }
+        });
+    </script>
+</body>
+</html>

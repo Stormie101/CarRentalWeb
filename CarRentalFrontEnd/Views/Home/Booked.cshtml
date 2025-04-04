@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Booked Cars";
+}
+
+@section Styles {
+    <style>
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+            .card img {
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+
+        .booked-header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .btn-cancel {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+
+            .btn-cancel:hover {
+                background-color: #c82333;
+            }
+
+        .action-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+}
+
+<div class="container mt-4">
+    <div class="booked-header mb-4">
+        <h1 class="display-6">Your Booked Cars</h1>
+        <p class="lead">Keep track of your upcoming trips and car reservations.</p>
+    </div>
+
+    <div class="row">
+        <!-- Dummy Booking Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Car Image">
+                <div class="card-body">
+                    <h5 class="card-title">Toyota Corolla</h5>
+                    <p class="card-text"><strong>Pickup Date:</strong> 10th April 2025</p>
+                    <p class="card-text"><strong>Drop-off Date:</strong> 15th April 2025</p>
+                    <p class="card-text"><strong>Price:</strong> $250</p>
+                </div>
+                <div class="card-footer action-section">
+                    <button class="btn btn-cancel">Cancel Booking</button>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more cards for additional bookings -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Car Image">
+                <div class="card-body">
+                    <h5 class="card-title">Honda Civic</h5>
+                    <p class="card-text"><strong>Pickup Date:</strong> 12th April 2025</p>
+                    <p class="card-text"><strong>Drop-off Date:</strong> 18th April 2025</p>
+                    <p class="card-text"><strong>Price:</strong> $300</p>
+                </div>
+                <div class="card-footer action-section">
+                    <button class="btn btn-cancel">Cancel Booking</button>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.btn-cancel').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Booking canceled! (This is a dummy action.)');
+            });
+        });
+    </script>
+}

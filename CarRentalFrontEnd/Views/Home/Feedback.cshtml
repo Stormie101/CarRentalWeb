@@ -1,0 +1,113 @@
+﻿@{
+    ViewData["Title"] = "Feedback";
+}
+
+@section Styles {
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+
+        .feedback-title {
+            color: #343a40;
+            font-weight: 700;
+        }
+
+        .feedback-card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .rating-dropdown {
+            transition: transform 0.3s ease;
+        }
+
+            .rating-dropdown:hover {
+                transform: scale(1.05);
+            }
+
+        .btn-submit {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+
+            .btn-submit:hover {
+                background-color: #218838;
+            }
+    </style>
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="feedback-title">We Value Your Feedback</h1>
+        <p class="text-muted">Help us improve your car rental experience!</p>
+    </div>
+    <div class="card feedback-card p-4">
+        <form>
+            <div class="mb-3">
+                <label for="overallSatisfaction" class="form-label">Overall Satisfaction</label>
+                <select id="overallSatisfaction" class="form-select rating-dropdown">
+                    <option value="5">Excellent</option>
+                    <option value="4">Good</option>
+                    <option value="3">Neutral</option>
+                    <option value="2">Poor</option>
+                    <option value="1">Terrible</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="carCondition" class="form-label">Car Condition</label>
+                <select id="carCondition" class="form-select rating-dropdown">
+                    <option value="5">Excellent</option>
+                    <option value="4">Good</option>
+                    <option value="3">Neutral</option>
+                    <option value="2">Poor</option>
+                    <option value="1">Terrible</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="pickupProcess" class="form-label">Pick-Up Process</label>
+                <select id="pickupProcess" class="form-select rating-dropdown">
+                    <option value="5">Excellent</option>
+                    <option value="4">Good</option>
+                    <option value="3">Neutral</option>
+                    <option value="2">Poor</option>
+                    <option value="1">Terrible</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="dropoffProcess" class="form-label">Drop-Off Process</label>
+                <select id="dropoffProcess" class="form-select rating-dropdown">
+                    <option value="5">Excellent</option>
+                    <option value="4">Good</option>
+                    <option value="3">Neutral</option>
+                    <option value="2">Poor</option>
+                    <option value="1">Terrible</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="customerService" class="form-label">Customer Service</label>
+                <select id="customerService" class="form-select rating-dropdown">
+                    <option value="5">Excellent</option>
+                    <option value="4">Good</option>
+                    <option value="3">Neutral</option>
+                    <option value="2">Poor</option>
+                    <option value="1">Terrible</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="additionalFeedback" class="form-label">Additional Feedback</label>
+                <textarea id="additionalFeedback" class="form-control" rows="3" placeholder="Share your thoughts..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-submit w-100">Submit Feedback</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelector('.btn-submit').addEventListener('click', function(event) {
+            event.preventDefault();
+            alert('Thank you for your feedback!');
+        });
+    </script>
+}
