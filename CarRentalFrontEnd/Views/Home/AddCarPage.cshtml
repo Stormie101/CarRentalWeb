@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Add New Car";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Add New Car</h2>
+
+    <form method="post" asp-action="SubmitCar" asp-controller="Home" enctype="multipart/form-data" class="shadow p-4 rounded" style="max-width: 500px; margin: auto;">
+        <div class="mb-3">
+            <label for="model" class="form-label">Car Model</label>
+            <input type="text" class="form-control" id="model" name="Model" placeholder="Enter car model" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="brand" class="form-label">Car Brand</label>
+            <input type="text" class="form-control" id="brand" name="Brand" placeholder="Enter car brand" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="pricePerDay" class="form-label">Price Per Day (RM)</label>
+            <input type="number" class="form-control" id="pricePerDay" name="PricePerDay" placeholder="Enter price per day" min="1" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="type" class="form-label">Car Type</label>
+            <select class="form-select" id="type" name="Type" required>
+                <option value="Sedan" selected>Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="Hatchback">Hatchback</option>
+                <option value="Truck">Truck</option>
+                <option value="Van">Van</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="imageFile" class="form-label">Car Image</label>
+            <input type="file" class="form-control" id="imageFile" name="ImageFile" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+        <button type="button" class="btn btn-secondary w-100 mt-2" onclick="window.location.href='/Home/Manage'">Cancel</button>
+    </form>
+</div>

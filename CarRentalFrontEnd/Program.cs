@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using CarRentalFrontEnd.Models; // Ensure this matches your namespace
+using CarRentalFrontEnd.Models;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     )
 );
 
+builder.Services.AddSession(); // Enable session
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,9 +25,44 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//database seed
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    if (!context.Cars.Any())
+    {
+        context.Cars.AddRange(
+            new Car
+            {
+                Model = "Model 3",
+                Brand = "Tesla",
+                PricePerDay = 650,
+                ImagePath = "cars/hondacivic.jpg"
+            },
+            new Car
+            {
+                Model = "Corolla",
+                Brand = "Toyota",
+                PricePerDay = 500,
+                ImagePath = "cars/toyotacorolla.jpg"
+            },
+            new Car
+            {
+                Model = "Civic",
+                Brand = "Honda",
+                PricePerDay = 500,
+                ImagePath = "cars/teslamodel3.jpg"
+            }
+        );
+        context.SaveChanges();
+    }
+}
+
+//app.UseHttpsRedirection();
 app.UseRouting();
 app.UseStaticFiles();
+app.UseSession(); // Use session middleware
+
 
 // Define the default route for the application
 app.MapControllerRoute(

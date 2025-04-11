@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "Admin Page";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Admin Dashboard</h1>
+
+    <ul class="nav nav-tabs" id="adminTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab">Users</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="cars-tab" data-bs-toggle="tab" data-bs-target="#cars" type="button" role="tab">Cars</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings" type="button" role="tab">Bookings</button>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-4" id="adminTabsContent">
+        <!-- Users Table -->
+        <div class="tab-pane fade show active" id="users" role="tabpanel">
+            <h2>Manage Users</h2>
+            <button class="btn btn-success mb-3" onclick="window.location.href='/Home/AddUserPage'">Add User</button>
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    @foreach (var user in ViewBag.Users)
+                    {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.FullName</td>
+                        <td>@user.Email</td>
+                        <td>
+                            <form method="post" asp-action="DeleteUser" asp-controller="Home">
+                                <input type="hidden" name="id" value="@user.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+
+        <!-- Cars Table -->
+        <div class="tab-pane fade" id="cars" role="tabpanel">
+            <h2>Manage Cars</h2>
+            <button class="btn btn-success mb-3" onclick="window.location.href='/Home/AddCarPage'">Add Car</button>
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Model</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="carsTableBody">
+                    @foreach (var car in ViewBag.Cars)
+                    {
+                    <tr>
+                        <td>@car.Id</td>
+                        <td>@car.Model</td>
+                        <td>@car.Brand</td>
+                        <td>RM @car.PricePerDay</td>
+                        <td>
+                            <form method="post" asp-action="DeleteCar" asp-controller="Home">
+                                <input type="hidden" name="id" value="@car.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+
+        <!-- Bookings Table -->
+        <div class="tab-pane fade" id="bookings" role="tabpanel">
+            <h2>Manage Bookings</h2>
+            <button class="btn btn-success mb-3" onclick="window.location.href='/Home/AddBookingPage'">Add Booking</button>            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Car</th>
+                        @* <th>User</th> *@
+                        <th>Pickup Date</th>
+                        <th>Drop-Off Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="bookingsTableBody">
+                    @foreach (var booking in ViewBag.Bookings)
+                    {
+                    <tr>
+                        <td>@booking.Id</td>
+                        <td>@booking.CarName</td>
+                        @* <td>@booking.UserName</td> *@
+                        <td>@booking.PickupDate.ToShortDateString()</td>
+                        <td>@booking.DropoffDate.ToShortDateString()</td>
+                        <td>
+                            <form method="post" asp-action="DeleteBooking" asp-controller="Home">
+                                <input type="hidden" name="id" value="@booking.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function addItem(type) {
+            alert(`Add new ${type} function triggered!`);
+        }
+
+        function viewItem(type, id) {
+            alert(`View ${type} details for ID: ${id}`);
+        }
+
+        function deleteItem(type, id) {
+            const confirmDelete = confirm(`Are you sure you want to delete this ${type}?`);
+            if (confirmDelete) {
+                alert(`${type} with ID: ${id} has been deleted.`);
+            }
+        }
+    </script>
+}

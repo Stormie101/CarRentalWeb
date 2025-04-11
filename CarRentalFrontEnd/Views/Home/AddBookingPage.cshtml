@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Add New Booking";
+    var carsList = ViewBag.Cars as List<CarRentalFrontEnd.Models.Car>;
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Add New Booking</h2>
+
+    <form method="post" asp-action="SubmitBooking" asp-controller="Home" class="shadow p-4 rounded" style="max-width: 500px; margin: auto;">
+        <div class="mb-3">
+            <label for="carId" class="form-label">Select Car</label>
+            <select class="form-select" id="carId" name="CarId" required>
+                <option value="" disabled selected>Select a car</option>
+                @if (carsList != null)
+                {
+                    foreach (var car in carsList)
+                    {
+                <option value="@car.Id">@car.Brand @car.Model</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="pickupDate" class="form-label">Pickup Date</label>
+            <input type="date" class="form-control" id="pickupDate" name="PickupDate" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="dropoffDate" class="form-label">Dropoff Date</label>
+            <input type="date" class="form-control" id="dropoffDate" name="DropoffDate" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+        <button type="button" class="btn btn-secondary w-100 mt-2" onclick="window.location.href='/Home/Manage'">Cancel</button>
+    </form>
+</div>

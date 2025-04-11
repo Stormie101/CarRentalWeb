@@ -3,6 +3,7 @@ using System;
 using CarRentalFrontEnd.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentalFrontEnd.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250408043203_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,9 +28,6 @@ namespace CarRentalFrontEnd.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("CarId")
-                        .HasColumnType("int");
-
                     b.Property<string>("CarImage")
                         .HasColumnType("longtext");
 
@@ -37,14 +37,8 @@ namespace CarRentalFrontEnd.Migrations
                     b.Property<DateTime>("DropoffDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("DropoffLocation")
-                        .HasColumnType("longtext");
-
                     b.Property<DateTime>("PickupDate")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<string>("PickupLocation")
-                        .HasColumnType("longtext");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(65,30)");
@@ -60,8 +54,8 @@ namespace CarRentalFrontEnd.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Availability")
-                        .HasColumnType("int");
+                    b.Property<bool>("Availability")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Brand")
                         .IsRequired()
@@ -77,9 +71,6 @@ namespace CarRentalFrontEnd.Migrations
 
                     b.Property<decimal>("PricePerDay")
                         .HasColumnType("decimal(65,30)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 

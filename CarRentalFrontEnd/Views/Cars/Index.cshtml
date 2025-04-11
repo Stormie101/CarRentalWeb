@@ -1,46 +1,28 @@
 ﻿@{
     ViewData["Title"] = "Browse Cars";
 }
+@model IEnumerable<CarRentalFrontEnd.Models.Car>
 
-<div class="container mt-4">
+<div class="container mt-5">
     <h1 class="text-center mb-4">Browse Our Cars</h1>
-
     <div class="row">
-        <!-- Placeholder for car cards -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/300" class="card-img-top" alt="Car Image">
-                <div class="card-body">
-                    <h5 class="card-title">Car Model</h5>
-                    <p class="card-text">Brand: Example Brand</p>
-                    <p class="card-text">Price: $XX per day</p>
-                    <a href="#" class="btn btn-primary">Rent Now</a>
-                </div>
-            </div>
-        </div>
+        @foreach (var car in Model) // Loop through each car
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <!-- Image -->
+                    <img src="@Url.Content("~/image/" + car.ImagePath)" class="card-img-top" alt="@car.Model" />
 
-        <div class="col-md-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/300" class="card-img-top" alt="Car Image">
-                <div class="card-body">
-                    <h5 class="card-title">Car Model</h5>
-                    <p class="card-text">Brand: Example Brand</p>
-                    <p class="card-text">Price: $XX per day</p>
-                    <a href="#" class="btn btn-primary">Rent Now</a>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/300" class="card-img-top" alt="Car Image">
-                <div class="card-body">
-                    <h5 class="card-title">Car Model</h5>
-                    <p class="card-text">Brand: Example Brand</p>
-                    <p class="card-text">Price: $XX per day</p>
-                    <a href="#" class="btn btn-primary">Rent Now</a>
+                    <!-- Car Details -->
+                    <div class="card-body">
+                        <h5 class="card-title">@car.Model</h5>
+                        <p class="card-text"><strong>Brand:</strong> @car.Brand</p>
+                        <p class="card-text"><strong>Price Per Day:</strong> RM @car.PricePerDay</p>
+                        <a asp-action="Rent" asp-controller="Cars" asp-route-id="@car.Id" class="btn btn-primary">Rent</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
 </div>

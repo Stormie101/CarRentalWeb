@@ -1,0 +1,38 @@
+﻿@model CarRentalFrontEnd.Models.Car
+
+@{
+    ViewData["Title"] = "Rent a Car";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Rent Your Car</h1>
+
+    <form method="post" asp-action="SubmitRental" asp-controller="Cars">
+        <div class="mb-3">
+            <label for="pickupLocation" class="form-label">Pickup Location</label>
+            <input type="text" class="form-control" id="pickupLocation" name="PickupLocation" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="dropoffLocation" class="form-label">Drop-Off Location</label>
+            <input type="text" class="form-control" id="dropoffLocation" name="DropoffLocation" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="pickupDate" class="form-label">Pickup Date</label>
+            <input type="date" class="form-control" id="pickupDate" name="PickupDate" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="rentalDays" class="form-label">Rental Days</label>
+            <input type="number" class="form-control" id="rentalDays" name="RentalDays" min="1" required>
+        </div>
+
+        <input type="hidden" name="CarId" value="@Model.Id" />
+        <input type="hidden" name="CarName" value="@Model.Model" />
+        <input type="hidden" name="CarImage" value="@Model.ImagePath" />
+        <input type="hidden" name="PricePerDay" value="@Model.PricePerDay" />
+
+        <button type="submit" class="btn btn-primary w-100">Confirm Rental</button>
+    </form>
+</div>

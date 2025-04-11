@@ -46,68 +46,60 @@
         <form asp-action="SubmitFeedback" method="post">
             <div class="mb-3">
                 <label for="overallSatisfaction" class="form-label">Overall Satisfaction</label>
-                <select id="overallSatisfaction" class="form-select rating-dropdown">
-                    <option value="5">Excellent</option>
-                    <option value="4">Good</option>
-                    <option value="3">Neutral</option>
-                    <option value="2">Poor</option>
-                    <option value="1">Terrible</option>
+                <select id="overallSatisfaction" name="OverallSatisfaction" class="form-select rating-dropdown" required>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Good">Good</option>
+                    <option value="Neutral">Neutral</option>
+                    <option value="Poor">Poor</option>
+                    <option value="Terrible">Terrible</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="carCondition" class="form-label">Car Condition</label>
-                <select id="carCondition" class="form-select rating-dropdown">
-                    <option value="5">Excellent</option>
-                    <option value="4">Good</option>
-                    <option value="3">Neutral</option>
-                    <option value="2">Poor</option>
-                    <option value="1">Terrible</option>
+                <select id="carCondition" name="CarCondition" class="form-select rating-dropdown" required>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Good">Good</option>
+                    <option value="Neutral">Neutral</option>
+                    <option value="Poor">Poor</option>
+                    <option value="Terrible">Terrible</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="pickupProcess" class="form-label">Pick-Up Process</label>
-                <select id="pickupProcess" class="form-select rating-dropdown">
-                    <option value="5">Excellent</option>
-                    <option value="4">Good</option>
-                    <option value="3">Neutral</option>
-                    <option value="2">Poor</option>
-                    <option value="1">Terrible</option>
+                <select id="pickupProcess" name="PickupProcess" class="form-select rating-dropdown" required>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Good">Good</option>
+                    <option value="Neutral">Neutral</option>
+                    <option value="Poor">Poor</option>
+                    <option value="Terrible">Terrible</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="dropoffProcess" class="form-label">Drop-Off Process</label>
-                <select id="dropoffProcess" class="form-select rating-dropdown">
-                    <option value="5">Excellent</option>
-                    <option value="4">Good</option>
-                    <option value="3">Neutral</option>
-                    <option value="2">Poor</option>
-                    <option value="1">Terrible</option>
+                <select id="dropoffProcess" name="DropoffProcess" class="form-select rating-dropdown" required>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Good">Good</option>
+                    <option value="Neutral">Neutral</option>
+                    <option value="Poor">Poor</option>
+                    <option value="Terrible">Terrible</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="customerService" class="form-label">Customer Service</label>
-                <select id="customerService" class="form-select rating-dropdown">
-                    <option value="5">Excellent</option>
-                    <option value="4">Good</option>
-                    <option value="3">Neutral</option>
-                    <option value="2">Poor</option>
-                    <option value="1">Terrible</option>
+                <select id="customerService" name="CustomerService" class="form-select rating-dropdown" required>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Good">Good</option>
+                    <option value="Neutral">Neutral</option>
+                    <option value="Poor">Poor</option>
+                    <option value="Terrible">Terrible</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="additionalFeedback" class="form-label">Additional Feedback</label>
-                <textarea id="additionalFeedback" class="form-control" rows="3" placeholder="Share your thoughts..."></textarea>
+                <textarea id="additionalFeedback" name="AdditionalFeedback" class="form-control" rows="3" placeholder="Share your thoughts..." required></textarea>
             </div>
             <button type="submit" class="btn btn-submit w-100">Submit Feedback</button>
         </form>
+
     </div>
 </div>
-
-@section Scripts {
-    <script>
-        document.querySelector('.btn-submit').addEventListener('click', function(event) {
-            event.preventDefault();
-            alert('Thank you for your feedback!');
-        });
-    </script>
-}
